@@ -10,8 +10,13 @@ resource "mongodbatlas_database_user" "db_user" {
   auth_database_name = "admin"
 
   roles {
-    role_name     = "readWrite"
-    database_name = var.database_name
+    role_name     = "atlasAdmin"
+    database_name = "admin"
+  }
+
+  scopes {
+    name = var.cluster_name
+    type = "CLUSTER"
   }
 }
 
