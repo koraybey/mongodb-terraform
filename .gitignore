@@ -5,4 +5,4 @@
 *.tfvars
 
 # Secret files
-.env.*
+.env.keys
