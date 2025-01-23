@@ -1,20 +1,15 @@
 variable "environment_configs" {
   description = "Environment-specific configuration settings"
   type = map(object({
-    instance_size = string
+    # Empty object type, ready for future configuration options
   }))
   default = {
-    development = {
-      instance_size = "SERVERLESS"
-    }
-    staging = {
-      instance_size = "SERVERLESS"
-    }
-    production = {
-      instance_size = "SERVERLESS"
-    }
+    development = {}
+    staging     = {}
+    production  = {}
   }
 }
+
 resource "random_string" "cluster_name_suffix" {
   length  = 8
   special = false
@@ -63,7 +58,7 @@ variable "database_name" {
   type        = string
 }
 
-variable "provider_name" {
+variable "backing_provider_name" {
   description = "Provider name"
   type        = string
   default     = "GCP"

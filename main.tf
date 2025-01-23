@@ -1,7 +1,7 @@
 locals {
-  environment = terraform.workspace
+  environment        = terraform.workspace
   current_env_config = var.environment_configs[local.environment]
-  ip_list = split(",", var.allowed_ips)  # No need for trim since we'll have no spaces
+  ip_list            = split(",", var.allowed_ips) # No need for trim since we'll have no spaces
 }
 
 resource "mongodbatlas_project" "atlas_project" {
@@ -30,8 +30,8 @@ resource "mongodbatlas_serverless_instance" "cluster" {
   project_id = mongodbatlas_project.atlas_project.id
   name       = "${local.cluster_name}-${local.environment}"
 
-  provider_settings_backing_provider_name = "GCP"
-  provider_settings_provider_name         = local.current_env_config.instance_size
+  provider_settings_backing_provider_name = var.backing_provider_name
+  provider_settings_provider_name         = "SERVERLESS"
   provider_settings_region_name           = var.region_name
 }
 
