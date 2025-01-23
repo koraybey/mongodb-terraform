@@ -32,7 +32,7 @@ resource "mongodbatlas_serverless_instance" "cluster" {
 
   provider_settings_backing_provider_name = "GCP"
   provider_settings_provider_name         = local.current_env_config.instance_size
-  provider_settings_region_name           = var.gcp_region
+  provider_settings_region_name           = var.region_name
 }
 
 resource "mongodbatlas_project_ip_access_list" "ip_access_list" {

@@ -2,20 +2,16 @@ variable "environment_configs" {
   description = "Environment-specific configuration settings"
   type = map(object({
     instance_size = string
-    backup_enabled = bool
   }))
   default = {
     development = {
       instance_size = "SERVERLESS"
-      backup_enabled = false
     }
     staging = {
       instance_size = "SERVERLESS"
-      backup_enabled = true
     }
     production = {
       instance_size = "SERVERLESS"
-      backup_enabled = true
     }
   }
 }
@@ -66,9 +62,17 @@ variable "database_name" {
   description = "MongoDB database name"
   type        = string
 }
-variable "gcp_region" {
-  description = "GCP region for the cluster"
+
+variable "provider_name" {
+  description = "Provider name"
   type        = string
+  default     = "GCP"
+}
+
+variable "region_name" {
+  description = "Reegion for the cluster"
+  type        = string
+  default     = "WESTERN_EUROPE"
 }
 
 variable "allowed_ips" {
